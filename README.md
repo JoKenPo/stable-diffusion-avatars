@@ -3,7 +3,10 @@
 ### `npm run dev`
 
 Route example:
-`http://localhost:3000/image/ec7988e6d96cb3bf39f39fb487f59150`
+`http://localhost:3000/image/a2f88584af72fac42f2964371400ceb2`
+
+Image example:
+<img alt="demo" src="./images/a2f88584af72fac42f2964371400ceb2.jfif" />
 
 ## Docs
 
