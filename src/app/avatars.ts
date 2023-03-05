@@ -18,9 +18,7 @@ export class StableDiffusion {
 
     try {
       const imageReq: SimpleImageRequest = {
-        text_prompts: [
-          { text: `masterpiece, best quality, ${prompt}`, width: 1},
-        ],
+        prompt: `masterpiece, best quality, ${prompt}`,
         negativePrompt: 
           "person in distance, worst quality, low quality, medium quality, deleted, lowres, comic, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, jpeg artifacts, signature, watermark, username, blurry",
         seed,

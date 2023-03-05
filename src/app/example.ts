@@ -3,9 +3,7 @@ import { Generate, SimpleImageRequest, ImageResponse } from '../services/stabled
 import { getDataFolderPath, persistData } from '../utils/createFile';
 
 const request: SimpleImageRequest = {
-  text_prompts: [
-    { text: 'Uma casa na praia', width: 1 }
-  ],
+  prompt: 'Uma casa na praia',
   negativePrompt: 'Sem pessoas',
   styles: ['landscape'],
   seed: 42,
