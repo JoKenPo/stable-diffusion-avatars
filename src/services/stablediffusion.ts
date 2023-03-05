@@ -7,10 +7,12 @@ interface TextPrompt {
 
 export interface SimpleImageRequest {
   text_prompts: Array<TextPrompt>;
-  negativePrompt: string;
-  styles: string[];
+  // negativePrompt: string;
+  styles?: string[];
   seed: number;
-  samplerName: string;
+  samplerName?: string;
+  sampler?: string;
+  samples?: number;
   batchSize: number;
   nIter: number;
   steps: number;
@@ -18,7 +20,7 @@ export interface SimpleImageRequest {
   width: number;
   height: number;
   sNoise: number;
-  overrideSettings: Record<string, unknown>;
+  overrideSettings?: Record<string, unknown>;
   overrideSettingsRestoreAfterwards: boolean;
 }
 
