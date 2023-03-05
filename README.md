@@ -3,12 +3,13 @@
 ### `npm run dev`
 
 Route example:
-http://localhost:3000/image/4a51234569d4e3439de74d0c9b0b8769
+`http://localhost:3000/image/ec7988e6d96cb3bf39f39fb487f59150`
 
 ## DOC
 
 [Stability](https://api.stability.ai/docs#tag/v1betageneration/operation/textToImage)
 
-## Important Links
+## Useful Links
 
 [Stable Difussion Key](https://beta.dreamstudio.ai/membership?tab=apiKeys)
+[MD5 Hash Generator](https://www.md5hashgenerator.com)
