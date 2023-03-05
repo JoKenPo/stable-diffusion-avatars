@@ -86,6 +86,7 @@ class Client {
   async generate(inp: SimpleImageRequest): Promise<ImageResponse> {
     const u = buildURL(`/v1beta/generation/${engineId}/text-to-image`);
     const body = JSON.stringify(inp);
+    console.log("BODY: ", body)
 
     const response = await fetch(u.href, {
       method: 'POST',
@@ -101,6 +102,7 @@ class Client {
       // console.log(`Failed to fetch response: ${response.status} ${JSON.stringify(response)}`)
       throw new Error(`Failed to fetch response: ${response.status} ${response.text}`);
     }
+
 
     const data = await response.json();
     return data as ImageResponse;
