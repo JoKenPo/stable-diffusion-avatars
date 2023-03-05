@@ -2,12 +2,13 @@ import * as http from 'http';
 import * as url from 'url';
 
 interface TextPrompt {
-  text: string
+  text: string,
+  width: number
 }
 
 export interface SimpleImageRequest {
   text_prompts: Array<TextPrompt>;
-  // negativePrompt: string;
+  negativePrompt?: string;
   styles?: string[];
   seed: number;
   samplerName?: string;
@@ -68,7 +69,7 @@ export interface ImageInfo {
 
 
 const sdServerURL = `https://api.stability.ai`;
-const engineId = 'stable-diffusion-512-v2-0'
+const engineId = 'stable-diffusion-512-v2-1'
 
 function buildURL(path: string): url.URL {
   const u = new url.URL(sdServerURL);
@@ -85,8 +86,9 @@ class Client {
 
   async generate(inp: SimpleImageRequest): Promise<ImageResponse> {
     const u = buildURL(`/v1beta/generation/${engineId}/text-to-image`);
+    if (inp.negativePrompt) inp.text_prompts.push({text: inp.negativePrompt, width: -1})
+    
     const body = JSON.stringify(inp);
-    console.log("BODY: ", body)
 
     const response = await fetch(u.href, {
       method: 'POST',

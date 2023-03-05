@@ -4,9 +4,9 @@ import { getDataFolderPath, persistData } from '../utils/createFile';
 
 const request: SimpleImageRequest = {
   text_prompts: [
-    { text: 'Uma casa na praia' }
+    { text: 'Uma casa na praia', width: 1 }
   ],
-  // negativePrompt: 'Sem pessoas',
+  negativePrompt: 'Sem pessoas',
   styles: ['landscape'],
   seed: 42,
   samplerName: 'tft',

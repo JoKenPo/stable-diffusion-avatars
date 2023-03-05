@@ -19,11 +19,10 @@ export class StableDiffusion {
     try {
       const imageReq: SimpleImageRequest = {
         text_prompts: [
-          { text: `masterpiece, best quality, ${prompt}`},
-          // { text: "dont person in distance, dont worst quality, dont low quality, dont medium quality, dont deleted, dont lowres, dont comic, dont bad anatomy, dont bad hands, dont text, dont error, dont missing fingers, dont extra digit, dont fewer digits, dont cropped, dont jpeg artifacts, dont signature, dont watermark, dont username, dont blurry"}
+          { text: `masterpiece, best quality, ${prompt}`, width: 1},
         ],
-        // negativePrompt: 
-        //   "person in distance, worst quality, low quality, medium quality, deleted, lowres, comic, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, jpeg artifacts, signature, watermark, username, blurry"
+        negativePrompt: 
+          "person in distance, worst quality, low quality, medium quality, deleted, lowres, comic, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, jpeg artifacts, signature, watermark, username, blurry",
         seed,
         sampler: "K_DPMPP_2M",
         batchSize: 1,
@@ -198,7 +197,6 @@ export class StableDiffusion {
       sb.append("cloverworks, ")
     default:
     }
-
   
     const seedPortion = hash.slice(-9, -1)
     const seed = parseInt(seedPortion, 16) || Math.floor(Math.random() * 1000000);
