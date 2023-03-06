@@ -3,8 +3,8 @@
 ### `npm run dev`
 
 Route example:
-`http://localhost:3000/image/a2f88584af72fac42f2964371400ceb2`
-<img alt="hash"src="./images/screenshot.png" />
+`http://localhost:3000/image/a2f88584af72fac42f2964371400ceb2` <br>
+<img alt="hash" src="./images/screenshot.png" />
 
 Image example: <br>
 
