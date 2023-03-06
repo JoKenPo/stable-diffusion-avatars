@@ -87,12 +87,24 @@ class Client {
 
   async generate(inp: SimpleImageRequest): Promise<ImageResponse> {
     const u = buildURL(`/v1beta/generation/${engineId}/text-to-image`);
-    inp.text_prompts = [
-      {text: inp.prompt, width: 1}
-    ]
-    if (inp.negativePrompt) inp.text_prompts.push({text: inp.negativePrompt, width: -1})
+    // inp.text_prompts = [
+    //   {text: inp.prompt, width: 1}
+    // ];
+    // inp.prompt = "";
+
+    inp.text_prompts = inp.prompt.split('extra:').map(i => {
+      return { text: i, width: 1}
+    })
+    inp.prompt = "";
+    
+    if (inp.negativePrompt) { 
+      inp.text_prompts.push({text: inp.negativePrompt, width: -1})
+      inp.negativePrompt = ""
+    }
     
     const body = JSON.stringify(inp);
+
+    // console.log(body)
 
     const response = await fetch(u.href, {
       method: 'POST',

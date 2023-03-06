@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { Generate, ImageResponse, SimpleImageRequest } from './../services/stablediffusion';
 import { StringBuilder } from '../utils/stringBuilder'
+import { themes } from "../models/themes";
 
 type Avatar = {
   images: Uint8Array[];
@@ -8,9 +9,6 @@ type Avatar = {
 
 export class StableDiffusion {
   // RenderImage renders a stable diffusion image based on the hash given.
-  //
-  // It assumes that the image does dont exist, if it does, you will need
-  // to check elsewhere.
   public async renderImage(req: Request, res: Response): Promise<void> {
     const { hash } = req.params;
 
@@ -18,9 +16,9 @@ export class StableDiffusion {
 
     try {
       const imageReq: SimpleImageRequest = {
-        prompt: `masterpiece, best quality, avatar, ${prompt}`,
+        prompt: `masterpiece, best quality, ${prompt}`,
         negativePrompt: 
-          "person in distance, worst quality, low quality, medium quality, deleted, lowres, comic, bad anatomy, bad hands, bad face, text, error, missing fingers, extra digit, fewer digits, cropped, jpeg artifacts, signature, watermark, username, blurry",
+          "person in distance, worst quality, low quality, medium quality, deleted, lowres, comic, bad anatomy, bad hands, bad face, text, error, missing fingers, extra fingers, extra digit, fewer digits, cropped, jpeg artifacts, signature, watermark, username, blurry",
         seed,
         sampler: "K_DPMPP_2M",
         batchSize: 1,
@@ -54,154 +52,158 @@ export class StableDiffusion {
     }
   }
 
-  hallucinatePrompt(hash: string): any {
+  hallucinatePrompt(hash: string, theme: string = "RPG"): any {
     const sb = new StringBuilder();
+
+    const mainTheme = themes[theme]
+
     if (hash[0] > '0' && hash[0] <= '5') {
-      sb.append("1girl, ")
+      sb.append(mainTheme[0][0])
     } else {
-      sb.append("1guy, ")
+      sb.append(mainTheme[0][1])
     }
   
     switch (hash[1]) {
     case '0': case '1': case '2': case '3':
-      sb.append("blonde, ")
+      sb.append(mainTheme[1][0])
     case '4': case '5': case '6': case '7':
-      sb.append("brown hair, ")
+      sb.append(mainTheme[1][1])
     case '8': case '9': case 'a': case 'b':
-      sb.append("red hair, ")
+      sb.append(mainTheme[1][2])
     case 'c': case 'd': case 'e': case 'f':
-      sb.append("black hair, ")
+      sb.append(mainTheme[1][3])
     default:
     }
   
     if (hash[2] > '0' && hash[2] <= '5') {
-      sb.append("coffee shop, ")
+      sb.append(mainTheme[2][0])
     } else {
-      sb.append("landscape, outdoors, ")
+      sb.append(mainTheme[2][1])
     }
   
     if (hash[3] > '0' && hash[3] <= '5') {
-      sb.append("hoodie, ")
+      sb.append(mainTheme[3][0])
     } else {
-      sb.append("sweatsuit, ")
+      sb.append(mainTheme[3][1])
     }
   
     switch (hash[4]) {
     case '0': case '1': case '2': case '3':
-      sb.append("<lora:cdi:1>, ")
+      sb.append(mainTheme[4][0])
     case '4': case '5': case '6': case '7':
-      sb.append("breath of the wild, ")
+      sb.append(mainTheme[4][1])
     case '8': case '9': case 'a': case 'b':
-      sb.append("genshin impact, ")
+      sb.append(mainTheme[4][2])
     case 'c': case 'd': case 'e': case 'f':
-      sb.append("arknights, ")
+      sb.append(mainTheme[4][3])
     default:
     }
   
     if (hash[5] > '0' && hash[5] <= '5') {
-      sb.append("watercolor, ")
+      sb.append(mainTheme[5][0])
     } else {
-      sb.append("matte painting, ")
+      sb.append(mainTheme[5][1])
     }
   
     switch (hash[6]) {
     case '0': case '1': case '2': case '3':
-      sb.append("highly detailed, ")
+      sb.append(mainTheme[6][0])
     case '4': case '5': case '6': case '7':
-      sb.append("ornate, ")
+      sb.append(mainTheme[6][1])
     case '8': case '9': case 'a': case 'b':
-      sb.append("thick lines, ")
+      sb.append(mainTheme[6][2])
     case 'c': case 'd': case 'e': case 'f':
-      sb.append("3d render, ")
+      sb.append(mainTheme[6][3])
     default:
     }
   
     switch (hash[7]) {
     case '0': case '1': case '2': case '3':
-      sb.append("short hair, ")
+      sb.append(mainTheme[7][0])
     case '4': case '5': case '6': case '7':
-      sb.append("long hair, ")
+      sb.append(mainTheme[7][1])
     case '8': case '9': case 'a': case 'b':
-      sb.append("ponytail, ")
+      sb.append(mainTheme[7][2])
     case 'c': case 'd': case 'e': case 'f':
-      sb.append("pigtails, ")
+      sb.append(mainTheme[7][3])
     default:
     }
   
     switch (hash[8]) {
     case '0': case '1': case '2': case '3':
-      sb.append("smile, ")
+      sb.append(mainTheme[8][0])
     case '4': case '5': case '6': case '7':
-      sb.append("frown, ")
+      sb.append(mainTheme[8][1])
     case '8': case '9': case 'a': case 'b':
-      sb.append("laughing, ")
+      sb.append(mainTheme[8][2])
     case 'c': case 'd': case 'e': case 'f':
-      sb.append("angry, ")
+      sb.append(mainTheme[8][3])
     default:
     }
   
     switch (hash[9]) {
     case '0': case '1': case '2': case '3':
-      sb.append("sweater, ")
+      sb.append(mainTheme[9][0])
     case '4': case '5': case '6': case '7':
-      sb.append("tshirt, ")
+      sb.append(mainTheme[9][1])
     case '8': case '9': case 'a': case 'b':
-      sb.append("suitjacket, ")
+      sb.append(mainTheme[9][2])
     case 'c': case 'd': case 'e': case 'f':
-      sb.append("armor, ")
+      sb.append(mainTheme[9][3])
     default:
     }
   
     switch (hash[10]) {
     case '0': case '1': case '2': case '3':
-      sb.append("blue eyes, ")
+      sb.append(mainTheme[10][0])
     case '4': case '5': case '6': case '7':
-      sb.append("red eyes, ")
+      sb.append(mainTheme[10][1])
     case '8': case '9': case 'a': case 'b':
-      sb.append("brown eyes, ")
+      sb.append(mainTheme[10][2])
     case 'c': case 'd': case 'e': case 'f':
-      sb.append("hazel eyes, ")
+      sb.append(mainTheme[10][3])
     default:
     }
   
     if (hash[11] == '0') {
-      sb.append("heterochromia, ")
+      sb.append(mainTheme[11][0])
     }
   
     switch (hash[12]) {
     case '0': case '1': case '2': case '3':
-      sb.append("morning, ")
+      sb.append(mainTheme[12][0])
     case '4': case '5': case '6': case '7':
-      sb.append("afternoon, ")
+      sb.append(mainTheme[12][1])
     case '8': case '9': case 'a': case 'b':
-      sb.append("evening, ")
+      sb.append(mainTheme[12][2])
     case 'c': case 'd': case 'e': case 'f':
-      sb.append("nighttime, ")
+      sb.append(mainTheme[12][3])
     default:
     }
   
     if (hash[13] == '0') {
-      sb.append("<lora:genshin:1>, genshin, ")
+      sb.append(mainTheme[13][0])
     }
   
     switch (hash[14]) {
     case '0': case '1': case '2': case '3':
-      sb.append("vtuber, ")
+      sb.append(mainTheme[14][0])
     case '4': case '5': case '6': case '7':
-      sb.append("anime, ")
+      sb.append(mainTheme[14][1])
     case '8': case '9': case 'a': case 'b':
-      sb.append("studio ghibli, ")
+      sb.append(mainTheme[14][2])
     case 'c': case 'd': case 'e': case 'f':
-      sb.append("cloverworks, ")
+      sb.append(mainTheme[14][3])
     default:
     }
   
     const seedPortion = hash.slice(-9, -1)
     const seed = parseInt(seedPortion, 16) || Math.floor(Math.random() * 1000000);
-  
-    sb.append("pants")
 
-  
+    if (!!mainTheme.extra) sb.append("extra: " + mainTheme.extra.join(','))
+
+    // sb.append("pants")
+
     return {prompt: sb.toString(), seed}
   }
 }
