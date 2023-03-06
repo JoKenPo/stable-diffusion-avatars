@@ -4,7 +4,7 @@
 
 Route example:
 `http://localhost:3000/image/a2f88584af72fac42f2964371400ceb2`
-<img alt="hash"src="./images/Captura de Tela 2023-03-06 às 17.19.04.png">
+<img alt="hash"src="./images/screenshot.png" />
 
 Image example: <br>
 <img alt="demo" src="./images/9abdd2f56590fcbfbd85fde562bb9388.jpeg" />
