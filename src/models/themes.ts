@@ -116,10 +116,10 @@ export const themes: Themes = {
     "1man, ",
   ],
 "1": [
-    "blonde, ",
-    "brown hair, ",
-    "white hair, ",
-    "black hair, ",
+    "holding a sword, ",
+    "holding a axe, ",
+    "holding a bow, ",
+    "holding a magic staff, ",
   ],
   "2": [
     "inn, ",
