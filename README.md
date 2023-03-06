@@ -7,11 +7,14 @@ Route example:
 <img alt="hash"src="./images/screenshot.png" />
 
 Image example: <br>
-<img alt="demo" src="./images/9abdd2f56590fcbfbd85fde562bb9388.jpeg" />
-<img alt="demo" src="./images/dc90f6b69a1fb6b0f978251de5fcd591.jpeg" /><br>
-<img alt="demo" src="./images/8645effecd8d970dc5c1e93ae43a25d0.jpeg" />
-<img alt="demo" src="./images/b7f575ae82959924afc0075e0c01c62b.jpeg" />
 
+<div>
+<img alt="demo" src="./images/9abdd2f56590fcbfbd85fde562bb9388.jpeg" width="253"/>
+<img alt="demo" src="./images/dc90f6b69a1fb6b0f978251de5fcd591.jpeg" width="253" />
+<img alt="demo" src="./images/8645effecd8d970dc5c1e93ae43a25d0.jpeg" width="253" />
+<img alt="demo" src="./images/b7f575ae82959924afc0075e0c01c62b.jpeg" width="253" />
+</div>
+  
 ## Docs
 
 [Stability](https://api.stability.ai/docs#tag/v1betageneration/operation/textToImage)
