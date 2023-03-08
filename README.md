@@ -1,5 +1,8 @@
 ## How to use
 
+First you need to generate a [Stable Diffusion API Key](https://beta.dreamstudio.ai/membership?tab=apiKeys)
+and create a .env file like the .env.example
+
 ### `npm run dev`
 
 Route example:
